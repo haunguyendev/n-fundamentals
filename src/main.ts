@@ -5,10 +5,11 @@ import { SeedService } from './seed/seed.service';
 import { ConfigService } from '@nestjs/config';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { randomUUID } from 'crypto';
+
 if (!global.crypto) {
   global.crypto = {
     randomUUID,
-  } as any;
+  } as Crypto;
 }
 declare const module: any;
 async function bootstrap() {
