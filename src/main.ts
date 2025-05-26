@@ -36,7 +36,7 @@ async function bootstrap() {
   const port = configService.get<number>('port') || 3000;
   await app.listen(port);
   console.log(`🚀 App running on http://localhost:${port}`);
-
+  console.log(configService.get<string>('NODE_ENV'));
   if (module.hot) {
     module.hot.accept();
     module.hot.dispose(() => app.close());

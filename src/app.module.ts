@@ -21,17 +21,11 @@ import { ConfigModule } from '@nestjs/config';
 import configuration from './config/configuration';
 import { validate } from 'env.validation';
 import { ApiKeyMiddleware } from './common/middlewares/api-key.middleware';
-const devConfig = {
-  port: 3000,
-};
-const proConfig = {
-  port: 4000,
-}
 @Module({
   imports: [ConfigModule.forRoot({
 
     isGlobal: true,
-    envFilePath: [`${process.cwd()}/.env.${process.env.NODE_ENV}`],
+    envFilePath: ['.env', `${process.cwd()}/.env.${process.env.NODE_ENV}`],
     load: [configuration],
     validate: validate
   }),
@@ -46,21 +40,10 @@ const proConfig = {
     SeedModule // Add your entities here
   ],
   controllers: [AppController],
-  providers: [AppService,
-    DevConfigService,
-    {
-      provide: "CONFIG",
-      useValue: process.env.NODE_ENV === 'production' ? proConfig : devConfig,
-    }
+  providers: [AppService
   ],
 })
-export class AppModule implements NestModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer.apply(LoggerMiddleware).forRoutes('songs');
-  }
-  constructor(private dataSource: DataSource) {
-    console.log('Connected to DB: ', dataSource.driver.database);
-  }
+export class AppModule {
 
 }
 

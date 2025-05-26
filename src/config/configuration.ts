@@ -1,4 +1,5 @@
 export default () => ({
+    NODE_ENV: process.env.NODE_ENV,
     type: 'postgres', // 👈 PHẢI CÓ
     port: parseInt(process.env.PORT ?? '3000', 10),
     secret: process.env.SECRET,
