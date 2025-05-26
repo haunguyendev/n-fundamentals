@@ -1,0 +1,30 @@
+### Create a new song
+POST http://localhost:3000/songs
+Content-Type: application/json
+
+{
+  "title": "Symphony No. 5",
+  "artist": ["Ludwig van Beethoven"],
+  "releaseDate": "1808-12-22",
+  "duration": "07:30"
+}
+
+### Get all songs
+GET http://localhost:3000/songs
+### Get all songs
+GET http://localhost:3000
+
+### Get a specific song by ID
+GET http://localhost:3000/songs/1
+ 
+### Update a song by ID
+PUT http://localhost:3000/songs/1
+Content-Type: application/json
+
+{
+  "title": "Updated Song",
+  "artist": "Updated Artist"
+}
+
+### Delete a song by ID
+DELETE http://localhost:3000/songs/1
